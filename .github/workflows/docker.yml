@@ -1,0 +1,28 @@
+name: Docker
+
+on:
+ workflow_dispatch:
+ push:
+    branches:
+      - doodle_bear # default branch
+
+jobs:
+  publish:
+    name: Publish to Dockerhub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: |
+          docker build -t luyanci/blc-bear:latest .
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Push to DockerHub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: luyanci/blc-bear:latest
