@@ -26,7 +26,7 @@ WORKDIR "${BASE_PATH}"
 # 后端依赖
 COPY blivedm/requirements.txt blivedm/
 COPY requirements.txt ./
-RUN pip3 install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # 数据目录
 COPY . ./
