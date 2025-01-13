@@ -28,7 +28,7 @@ jobs:
           context: .
           push: true
           tags: luyanci/blc-bear:latest
-    ToGhcr:
+  ToGhcr:
         name: Push to ghcr.io
         runs-on: ubuntu-latest
         env:
